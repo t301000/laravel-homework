@@ -4,7 +4,7 @@
     <style>
         #ntpc-logo {
             transform: scale(1);
-            transition: all 0.2s linear;
+            transition: all 0.1s linear;
         }
         #ntpc-logo:hover {
             transform: scale(1.3);
