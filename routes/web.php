@@ -18,5 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 NTPCOpenID::routes();
+Route::group(
+    [
+        'prefix' => config('ntpcopenid.prefix'),
+        'middleware' => 'guest',
+    ],
+    function () {
+        Route::get('register', 'Auth\NTPCOpenIDController@register');
+    }
+);
 
 Route::get('/home', 'HomeController@index')->name('home');
