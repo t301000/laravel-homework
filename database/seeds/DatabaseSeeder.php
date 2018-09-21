@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
          * 預設權限
          */
         $defaultPermissions = [
-            '後台管理', // id = 1
+            '進入後台', // id = 1
         ];
 
 
