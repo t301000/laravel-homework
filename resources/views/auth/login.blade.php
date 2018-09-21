@@ -7,7 +7,8 @@
             transition: all 0.1s linear;
         }
         #ntpc-logo:hover {
-            transform: scale(1.3);
+            transform: scale(1.2);
+            cursor: pointer;
         }
         #ntpc-openid:before {
             content: '或';
@@ -75,12 +76,10 @@
                     </form>
                 </div>
                 <div class="col d-flex justify-content-center align-items-center ml-5 border-left" id="ntpc-openid">
-                    <form method="POST" action="{{ route('ntpcopenid.login.start') }}">
+                    <img src="{{ asset('images/ntpc.png') }}" id="ntpc-logo"
+                         onclick="event.preventDefault(); document.getElementById('ntpc-login-form').submit();">
+                    <form method="POST" action="{{ route('ntpcopenid.login.start') }}" id="ntpc-login-form">
                         @csrf
-
-                        <button type="submit" class="btn bg-transparent">
-                            <img src="{{ asset('images/ntpc.png') }}" id="ntpc-logo">
-                        </button>
                     </form>
                 </div>
             </div>
