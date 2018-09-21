@@ -41,22 +41,21 @@ class DatabaseSeeder extends Seeder
 
 
 
-        \App\User::create($defaultUser);
+        $user = \Backpack\Base\app\Models\BackpackUser::create($defaultUser);
 
 
         foreach ($defaultRoles as $roleName) {
             \Backpack\PermissionManager\app\Models\Role::create(['name'=> $roleName]);
         }
         // 將 預設管理員 加入 管理員角色
-        $adminRole = Backpack\PermissionManager\app\Models\Role::find(1);
-        $adminRole->users()->attach(1);
+        $user->assignRole($defaultRoles[0]);
 
 
         foreach ($defaultPermissions as $permissionName) {
             \Backpack\PermissionManager\app\Models\Permission::create(['name'=> $permissionName]);
         }
         // 將 管理員角色 加入 後台管理 權限
-        $adminRole->permissions()->attach(1);
+        \Backpack\PermissionManager\app\Models\Role::findByName($defaultRoles[0])->givePermissionTo($defaultPermissions[0]);
 
     }
 }
