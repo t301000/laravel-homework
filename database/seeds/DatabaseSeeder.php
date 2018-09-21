@@ -37,6 +37,10 @@ class DatabaseSeeder extends Seeder
          */
         $defaultPermissions = [
             '進入後台', // id = 1
+            '管理帳號',
+            '管理角色',
+            '管理權限',
+            '管理檔案',
         ];
 
 
@@ -54,8 +58,8 @@ class DatabaseSeeder extends Seeder
         foreach ($defaultPermissions as $permissionName) {
             \Backpack\PermissionManager\app\Models\Permission::create(['name'=> $permissionName]);
         }
-        // 將 管理員角色 加入 後台管理 權限
-        \Backpack\PermissionManager\app\Models\Role::findByName($defaultRoles[0])->givePermissionTo($defaultPermissions[0]);
+        // 將 管理員角色 加入 全部預設權限
+        \Backpack\PermissionManager\app\Models\Role::findByName($defaultRoles[0])->givePermissionTo($defaultPermissions);
 
     }
 }
