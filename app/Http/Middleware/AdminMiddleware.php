@@ -19,14 +19,6 @@ class AdminMiddleware
             abort(403);
         }
 
-        if (starts_with($request->path(), 'admin/')) {
-            $resource = explode('/',$request->path())[1];
-            $adminOnlyResources = ['user', 'role', 'permission'];
-            if (in_array($resource, $adminOnlyResources) && !$request->user()->hasAnyRole('管理員')) {
-                abort(403);
-            }
-        }
-
         return $next($request);
     }
 }
